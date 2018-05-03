@@ -1,18 +1,26 @@
 # todos-rest-api
 Express.js REST API todos server for tutorial
 
-# Install
+## Install
 
+```
 npm install
+```
 
 or
 
+```
 yarn
+```
 
-# Run
+## Run
 
+```
 npm start
+```
 
-or 
+or with Yarn
 
+```
 yarn start
+```
