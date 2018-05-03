@@ -2,6 +2,10 @@
   "name": "todos-rest-api",
   "version": "1.0.0",
   "description": "Express.js REST API todos server for tutorial",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danias/todos-rest-api.git"
+  },
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
