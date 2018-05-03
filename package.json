@@ -1,0 +1,17 @@
+{
+  "name": "todos-rest-api",
+  "version": "1.0.0",
+  "description": "Express.js REST API todos server for tutorial",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "author": "Vasilis Danias",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.3",
+    "uuid": "^3.2.1"
+  }
+}
