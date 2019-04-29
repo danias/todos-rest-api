@@ -8,14 +8,33 @@
   },
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "start": "node index.js",
+    "lint": "eslint .",
+    "jest": "jest --coverage",
+    "test": "jest --coverage",
+    "coverage": "nyc report --reporter=lcov",
+    "show-cover": "open coverage/lcov-report/index.html"
   },
   "author": "Vasilis Danias",
   "license": "ISC",
+  "nyc": {
+    "include": [
+        "**/*.js"
+    ],
+    "exclude": [
+        "**/node_modules/**",
+        "**/test/**",
+        "**/coverage/**"
+    ],
+    "all": true
+  },
   "dependencies": {
-    "body-parser": "^1.18.2",
-    "express": "^4.16.3",
-    "uuid": "^3.2.1"
+    "body-parser": "^1.19.0",
+    "express": "^4.16.4",
+    "uuid": "^3.3.2"
+  },
+  "devDependencies": {
+    "jest": "^24.7.1",
+    "supertest": "^4.0.2"
   }
 }
