@@ -16,21 +16,21 @@
 // your hard drive to read.
 function Database() {
     this.todos = {};
-    this.getTodos = function() {
+    this.getTodos = () => {
         return this.todos;
     };
-    this.addTodo = function(uuid, todo) {
-        this.todos[uuid] = todo;
+    this.addTodo = (id, todo) => {
+        this.todos[id] = todo;
     }
-    this.removeTodo = function(uuid) {
-        delete this.todos[uuid];
+    this.removeTodo = (id) => {
+        delete this.todos[id];
     }
-    this.resetTodos = function() {
+    this.resetTodos = () => {
         this.todos = {};
     }
-    this.editTodo = function(uuid, todo) {
-        this.todos[uuid] = todo;
+    this.editTodo = (id, todo) => {
+        this.todos[id] = todo;
     }
 }
 
-module.exports = {Database};
+module.exports = { Database };
