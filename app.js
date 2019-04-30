@@ -50,16 +50,18 @@ app.get('/list', (request, response) => {
 app.post('/add', (request, response) => {
     // Checking if the required todo value 
     // is defined else send the Malfored Request status
-    if (request.body.todo === undefined) response.status(400).send();
-    // Adding the todo to our database
-    database.addTodo(uuidv4(), request.body.todo);
-    // Outputting the new todo list
-    console.log(database.getTodos());
-    // Sending response with 201 status because
-    // POST changes data and should the client
-    // would expect the CREATED status response
-    // which is 201. 
-    response.status(201).send(OK);
+    if (request.body && request.body.todo === undefined) {
+        response.status(400).send();
+    } else {
+         // Adding the todo to our database
+        database.addTodo(request.body.id?request.body.id:uuidv4(), request.body.todo);
+        console.log(database.getTodos());
+        // Sending response with 201 status because
+        // POST changes data and should the client
+        // would expect the CREATED status response
+        // which is 201. 
+        response.status(201).send(OK);
+    }
 });
 
 /**
@@ -74,31 +76,31 @@ app.post('/add/:todo', (request, response) => {
 });
 
 app.delete('/remove', (request, response) => {
-    if (request.body.uuid === undefined) response.status(400).send();
-    database.removeTodo(request.body.uuid);
+    if (request.body.id === undefined) response.status(400).send();
+    database.removeTodo(request.body.id);
     // Here we use 202 because it is more appropriate 
     // for a DELETE request although 201 might be OK too
     response.status(202).send(OK);
     console.log(database.getTodos());
 });
 
-app.delete('/remove/:uuid', (request, response) => {
-    database.removeTodo(request.params.uuid);
+app.delete('/remove/:id', (request, response) => {
+    database.removeTodo(request.params.id);
     response.status(202).send(OK);
     console.log(database.getTodos());
+});
+
+app.put('/update', (request, response) => {
+    if (request.body.id === undefined || request.body.todo === undefined) response.status(400).send();
+    database.editTodo(request.body.id, request.body.todo);
+    console.log(database.getTodos());
+    response.status(201).send(OK);
 });
 
 app.delete('/reset', (request, response) => {
     database.resetTodos();
     console.log(database.getTodos());
     response.status(202).send(OK);
-});
-
-app.put('/update', (request, response) => {
-    if (request.body.uuid === undefined || request.body.todo === undefined) response.status(400).send();
-    database.editTodo(request.body.uuid);
-    console.log(database.getTodos());
-    response.status(201).send(OK);
 });
 
 module.exports = { app };
